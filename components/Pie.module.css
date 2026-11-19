@@ -1,0 +1,29 @@
+.pie {
+  background: var(--banda);
+  border-top: 1px solid var(--linea);
+  padding: 32px 0 40px;
+  font-size: 14px;
+  color: var(--texto-2);
+}
+
+.marca {
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.enlaces {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 20px;
+}
+
+.enlaces a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--texto-2);
+  text-underline-offset: 4px;
+}

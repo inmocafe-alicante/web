@@ -1,0 +1,262 @@
+/* Piezas comunes de las páginas. */
+
+.contenedor {
+  width: 100%;
+  max-width: var(--ancho);
+  margin: 0 auto;
+  padding: 0 var(--margen);
+}
+
+.seccion {
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
+.banda {
+  background: var(--banda);
+}
+
+.etiqueta {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cafe);
+  margin-bottom: 10px;
+}
+
+.nota {
+  font-family: var(--fuente-nota), cursive;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 1.1;
+  color: var(--cafe);
+}
+
+.acento {
+  color: var(--terracota-texto);
+}
+
+.texto {
+  color: var(--texto-2);
+  max-width: 62ch;
+}
+
+.pila > * + * {
+  margin-top: 16px;
+}
+
+/* Botones en píldora, 44 px mínimo. */
+.botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.boton,
+.botonSec {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 10px 24px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px solid var(--texto);
+  transition: opacity 0.15s;
+}
+
+.boton {
+  background: var(--texto);
+  color: var(--fondo);
+}
+
+.botonSec {
+  background: transparent;
+  color: var(--texto);
+}
+
+.boton:hover,
+.botonSec:hover {
+  opacity: 0.85;
+}
+
+.boton[aria-disabled='true'],
+.boton:disabled,
+.botonSec[aria-disabled='true'],
+.botonSec:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.enlace {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-weight: 600;
+  color: var(--texto);
+  text-underline-offset: 4px;
+}
+
+/* Tarjetas: radio 14–16 px, sin sombras ni degradados. */
+.tarjeta {
+  background: var(--tarjeta);
+  border-radius: var(--radio);
+  padding: 24px;
+}
+
+.tarjetaBanda {
+  background: var(--banda);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  padding: 24px;
+}
+
+.tarjeta2 {
+  background: var(--tarjeta-2);
+  border-radius: var(--radio-sm);
+  padding: 20px;
+}
+
+/* Huecos: datos que faltan, muy visibles en Preview. */
+.hueco {
+  display: inline-block;
+  padding: 0 6px;
+  border: 1.5px dashed var(--terracota-texto);
+  border-radius: 6px;
+  color: var(--terracota-texto);
+  font-family: var(--fuente-texto), system-ui, sans-serif;
+  font-size: 0.85em;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* Fotos */
+.foto {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radio);
+  background: var(--tarjeta-2);
+}
+
+.foto img {
+  object-fit: cover;
+}
+
+.fotoHueco {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  border: 1.5px dashed var(--linea);
+  border-radius: var(--radio);
+  color: var(--cafe);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-align: center;
+  padding: 12px;
+}
+
+/* Lista de datos (Cuándo · Duración…) */
+.datos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+
+.dato {
+  background: var(--tarjeta-2);
+  border-radius: var(--radio-sm);
+  padding: 14px 16px;
+}
+
+.dato dt {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cafe);
+}
+
+.dato dd {
+  margin: 4px 0 0;
+  font-weight: 600;
+}
+
+/* Formularios */
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.campo label {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.campo input {
+  min-height: 48px;
+  padding: 10px 14px;
+  background: var(--fondo);
+  color: var(--texto);
+  border: 1.5px solid var(--cafe-borde);
+  border-radius: 12px;
+}
+
+.casilla {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  min-height: 44px;
+  font-size: 15px;
+  color: var(--texto-2);
+}
+
+.casilla input {
+  width: 22px;
+  height: 22px;
+  margin: 2px 0 0;
+  flex: none;
+  accent-color: var(--cafe);
+}
+
+.formulario {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.aviso {
+  font-size: 14px;
+  color: var(--cafe);
+}
+
+.cabeceraPagina {
+  padding-top: 40px;
+  padding-bottom: 32px;
+}
+
+.cabeceraPagina h1 {
+  font-size: 42px;
+  margin: 6px 0 14px;
+}
+
+@media (min-width: 900px) {
+  .seccion {
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+  .cabeceraPagina h1 {
+    font-size: 56px;
+  }
+}
