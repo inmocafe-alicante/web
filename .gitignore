@@ -1,0 +1,18 @@
+# Variables de entorno y claves: nunca se suben
+.env*
+!.env.example
+
+# Dependencias y compilación
+node_modules/
+.next/
+out/
+build/
+*.tsbuildinfo
+next-env.d.ts
+
+# Vercel
+.vercel
+
+# Sistema
+.DS_Store
+npm-debug.log*
