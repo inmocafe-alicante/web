@@ -35,7 +35,7 @@ export default async function DondeEstamos({ params }: PageProps<'/[lang]/donde-
             aviso={d.donde.avisoMapa}
           />
           <Foto
-            src="/fotos/fachada.jpg"
+            src={contenidos.dondeEstamos.fotoFachada}
             alt={contenidos.dondeEstamos.fotoFachadaAlt[idioma]}
             alto={220}
             pendiente={d.huecos.foto}

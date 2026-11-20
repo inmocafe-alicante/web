@@ -43,7 +43,7 @@ export default async function Inicio({ params }: PageProps<'/[lang]'>) {
           </div>
         </div>
         <div className={estilos.entradaFoto}>
-          <Foto src="/fotos/portada.jpg" alt={c.fotoAlt[idioma]} alto={260} pendiente={d.huecos.foto} prioridad>
+          <Foto src={c.foto} alt={c.fotoAlt[idioma]} alto={260} pendiente={d.huecos.foto} prioridad>
             <div className={estilos.velo} aria-hidden="true" />
             <p className={`${ui.nota} ${estilos.notaFoto}`} lang="es">
               {c.notaFoto[idioma]}

@@ -35,8 +35,8 @@ export interface Evento {
   aforoPorDefecto: number;
   /** Cupo de plazas que se ofrece en la web. `null` = sin decidir. */
   plazasWebPorDefecto: number | null;
-  /** Ruta dentro de /public. */
-  foto: string;
+  /** Ruta dentro de /public. `null` = foto pendiente. */
+  foto: string | null;
   fotoAlt: Texto;
 }
 

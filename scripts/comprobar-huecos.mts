@@ -4,7 +4,10 @@
  * Busca datos que faltan en el contenido y en los diccionarios:
  *   - cualquier valor `null` en content/contenido.ts;
  *   - textos con `[ALGO]` o «PENDIENTE».
- *   - fotos que la web usa y todavía no están en /public.
+ *   - fotos pendientes (`null`), que también salen como `null`.
+ *
+ * Además, si una foto declarada en el contenido no está en /public, la
+ * compilación falla siempre (también en Preview): es un error, no un hueco.
  *
  * En Preview y en local solo informa. En la compilación de PRODUCCIÓN de Vercel
  * (VERCEL_ENV=production) o con `--estricto`, falla si encuentra alguno:
@@ -40,15 +43,12 @@ recorrer(contenido.legales, 'legales');
 recorrer(es, 'diccionario.es', ['diccionario.es.huecos']);
 recorrer(en, 'diccionario.en', ['diccionario.en.huecos']);
 
-const fotos = [
-  '/fotos/portada.jpg',
-  '/fotos/espacio-barra.jpg',
-  '/fotos/espacio-mesa.jpg',
-  '/fotos/fachada.jpg',
-  ...contenido.eventos.map((e) => e.foto),
-];
-for (const f of new Set(fotos)) {
-  if (!fs.existsSync(`public${f}`)) huecos.push(`foto: falta public${f}`);
+const { inicio, espacio, dondeEstamos } = contenido.contenidos;
+const fotos = [inicio.foto, espacio.fotoBarra, espacio.fotoMesa, dondeEstamos.fotoFachada, ...contenido.eventos.map((e) => e.foto)];
+const perdidas = [...new Set(fotos)].filter((f): f is string => f !== null && !fs.existsSync(`public${f}`));
+if (perdidas.length) {
+  for (const f of perdidas) console.error(`✗ La foto public${f} está en el contenido pero no en el repositorio.`);
+  process.exit(1);
 }
 
 const estricto = process.env.VERCEL_ENV === 'production' || process.argv.includes('--estricto');

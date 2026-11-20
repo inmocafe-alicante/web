@@ -7,6 +7,7 @@
  * y se editan desde el panel; las páginas no cambian.
  *
  * - `null` = dato que falta → hueco visible en Preview y bloqueo en producción.
+ * - Fotos: ruta dentro de /public, o `null` si aún no está subida.
  * - `*palabra*` = palabra destacada en Terracota (titular de la portada, «+»).
  * - Los textos en inglés son un BORRADOR traducido desde el español, pendiente
  *   de revisión por Ariadna (§8).
@@ -49,7 +50,7 @@ export const eventos: Evento[] = [
     incluye: INCLUYE,
     aforoPorDefecto: 40,
     plazasWebPorDefecto: null,
-    foto: '/fotos/rincon.jpg',
+    foto: null, // provisional: /fotos/rincon.jpg cuando esté subida
     fotoAlt: { es: 'Rincón con sillones en InmoCafé', en: 'Corner with armchairs at InmoCafé' },
   },
   {
@@ -81,7 +82,7 @@ export const eventos: Evento[] = [
     incluye: INCLUYE,
     aforoPorDefecto: 40,
     plazasWebPorDefecto: null,
-    foto: '/fotos/rincon.jpg',
+    foto: null, // provisional: /fotos/rincon.jpg cuando esté subida
     fotoAlt: { es: 'Rincón con sillones en InmoCafé', en: 'Corner with armchairs at InmoCafé' },
   },
   {
@@ -107,7 +108,7 @@ export const eventos: Evento[] = [
     incluye: INCLUYE,
     aforoPorDefecto: 40,
     plazasWebPorDefecto: null,
-    foto: '/fotos/rincon.jpg',
+    foto: null, // provisional: /fotos/rincon.jpg cuando esté subida
     fotoAlt: { es: 'Rincón con sillones en InmoCafé', en: 'Corner with armchairs at InmoCafé' },
   },
 ];
@@ -159,6 +160,7 @@ export const contenidos = {
       en: 'Come in, order a coffee and stay as long as you like: for a drink, to work on your laptop or for one of our weekly events. Nobody will try to sell you anything.',
     },
     notaFoto: { es: 'tu espacio, tu café', en: 'tu espacio, tu café' },
+    foto: '/fotos/portada.jpg',
     fotoAlt: {
       es: 'La sala de InmoCafé, con mesas, sillas de bambú y la barra al fondo',
       en: 'The InmoCafé room, with tables, bamboo chairs and the counter at the back',
@@ -220,10 +222,12 @@ export const contenidos = {
   espacio: {
     nota: { es: 'pasa y quédate', en: 'come in and stay' },
     titulo: { es: 'El espacio', en: 'The space' },
+    fotoBarra: '/fotos/espacio-barra.jpg',
     fotoBarraAlt: { es: 'Un café con leche sobre la barra de InmoCafé', en: 'A white coffee on the InmoCafé counter' },
     cafeTitulo: { es: 'El café', en: 'The café' },
     cafeTexto: null as Contenido,
     mesasTitulo: { es: 'Las mesas', en: 'The tables' },
+    fotoMesa: '/fotos/espacio-mesa.jpg',
     fotoMesaAlt: { es: 'Mesa con un portátil y sillas de bambú en InmoCafé', en: 'Table with a laptop and bamboo chairs at InmoCafé' },
     wifi: { es: 'Sí', en: 'Yes' },
     enchufes: { es: 'Sí, en la pared', en: 'Yes, along the wall' },
@@ -234,6 +238,7 @@ export const contenidos = {
 
   dondeEstamos: {
     titulo: { es: 'Dónde estamos', en: 'Where to find us' },
+    fotoFachada: null as string | null,
     fotoFachadaAlt: { es: 'Fachada de InmoCafé', en: 'InmoCafé from the street' },
   },
 

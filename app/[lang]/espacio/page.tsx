@@ -32,7 +32,7 @@ export default async function Espacio({ params }: PageProps<'/[lang]/espacio'>) 
       </header>
 
       <div className={ui.pila} style={{ paddingBottom: 64 }}>
-        <Foto src="/fotos/espacio-barra.jpg" alt={c.fotoBarraAlt[idioma]} alto={280} pendiente={d.huecos.foto} />
+        <Foto src={c.fotoBarra} alt={c.fotoBarraAlt[idioma]} alto={280} pendiente={d.huecos.foto} />
 
         <section className={ui.pila} aria-labelledby="el-cafe" style={{ paddingTop: 16 }}>
           <h2 id="el-cafe">{c.cafeTitulo[idioma]}</h2>
@@ -55,7 +55,7 @@ export default async function Espacio({ params }: PageProps<'/[lang]/espacio'>) 
 
         <section className={`${ui.tarjeta} ${ui.pila}`} aria-labelledby="las-mesas">
           <h2 id="las-mesas">{c.mesasTitulo[idioma]}</h2>
-          <Foto src="/fotos/espacio-mesa.jpg" alt={c.fotoMesaAlt[idioma]} alto={240} pendiente={d.huecos.foto} />
+          <Foto src={c.fotoMesa} alt={c.fotoMesaAlt[idioma]} alto={240} pendiente={d.huecos.foto} />
           <dl className={ui.datos}>
             {datos.map((x) => (
               <div key={x.dt} className={ui.dato}>
