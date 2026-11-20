@@ -44,6 +44,8 @@ body {
   font-family: var(--fuente-texto), system-ui, sans-serif;
   font-size: 16px;
   line-height: 1.55;
+  /* Números a la misma altura (Cormorant los trae «de texto» por defecto). */
+  font-variant-numeric: lining-nums;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

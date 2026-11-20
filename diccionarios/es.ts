@@ -38,6 +38,7 @@ export const es = {
   },
   eventos: {
     fechaPorAnunciar: 'Fecha por anunciar',
+    diaHoraPorAnunciar: 'Día y hora por anunciar',
     pestanas: 'Eventos',
     cuando: 'Cuándo',
     duracion: 'Duración',
@@ -67,9 +68,6 @@ export const es = {
     aceptoPrivacidad: 'Acepto la política de privacidad',
     enviar: 'Avísame',
     proximamente: 'Muy pronto podrás apuntarte desde aquí.',
-  },
-  tablon: {
-    proximamente: 'Muy pronto podrás publicar tu anuncio desde aquí.',
   },
   espacio: {
     wifi: 'Wifi',

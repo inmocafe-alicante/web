@@ -10,6 +10,7 @@ import estilos from './Eventos.module.css';
 
 export function Cuando({ evento, idioma }: { evento: Evento; idioma: Idioma }) {
   const d = diccionario(idioma);
+  if (evento.diaSemana === null) return <>{d.eventos.diaHoraPorAnunciar}</>;
   return (
     <>
       {d.eventos.dias[evento.diaSemana]} · {evento.hora ?? <Hueco etiqueta={d.huecos.hora} />}

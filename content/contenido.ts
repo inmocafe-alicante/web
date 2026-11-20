@@ -14,7 +14,8 @@
 import type { Ajustes, Contenido, Evento, PaginaLegal, Sesion, Texto } from './tipos';
 
 // ─── eventos ──────────────────────────────────────────────────────────────
-// 🟡 Días, duraciones y pasos: modelos de evento B1, PROPUESTA sin aprobar.
+// 🟡 Duraciones y pasos: modelos de evento B1, PROPUESTA sin aprobar.
+// Días habituales sin decidir (null): la web muestra «Día y hora por anunciar».
 
 const INCLUYE: Texto = {
   es: 'dos consumiciones y picoteo',
@@ -41,7 +42,7 @@ export const eventos: Evento[] = [
       { es: 'Dos rondas de 25 minutos, mitad en cada idioma', en: 'Two 25-minute rounds, half in each language' },
       { es: 'Al final, conversación libre con algo para picar', en: 'To finish, open conversation with something to snack on' },
     ],
-    diaSemana: 'martes',
+    diaSemana: null,
     hora: null,
     duracionMinutos: 120,
     precioEuros: 8,
@@ -73,7 +74,7 @@ export const eventos: Evento[] = [
         en: 'The format changes a little each month: a short talk or “I need / I offer”',
       },
     ],
-    diaSemana: 'miercoles',
+    diaSemana: null,
     hora: null,
     duracionMinutos: 90,
     precioEuros: 8,
@@ -99,7 +100,7 @@ export const eventos: Evento[] = [
       { es: 'Conversación guiada con algo para picar', en: 'Guided conversation with something to snack on' },
       { es: 'La última semana se vota el libro siguiente', en: 'In the last week we vote for the next book' },
     ],
-    diaSemana: 'jueves',
+    diaSemana: null,
     hora: null,
     duracionMinutos: 90,
     precioEuros: 8,
@@ -159,8 +160,8 @@ export const contenidos = {
     },
     notaFoto: { es: 'tu espacio, tu café', en: 'tu espacio, tu café' },
     fotoAlt: {
-      es: 'La barra de InmoCafé dentro del local de la inmobiliaria',
-      en: 'The InmoCafé counter inside the estate agency premises',
+      es: 'La sala de InmoCafé, con mesas, sillas de bambú y la barra al fondo',
+      en: 'The InmoCafé room, with tables, bamboo chairs and the counter at the back',
     },
 
     conceptoEtiqueta: { es: 'Así funciona', en: 'How it works' },
@@ -194,8 +195,8 @@ export const contenidos = {
     tablonEtiqueta: { es: 'Tablón de compraventa', en: 'Buy & sell noticeboard' },
     tablonTitulo: { es: 'Lo último del tablón', en: 'Latest on the noticeboard' },
     tablonVacio: {
-      es: 'Todavía no hay anuncios. ¿Publicas el primero?',
-      en: 'There are no ads yet. Will you post the first one?',
+      es: 'Todavía no hay anuncios. Muy pronto podrás publicar el tuyo desde aquí.',
+      en: 'There are no ads yet. Very soon you will be able to post yours here.',
     },
 
     visitaTitulo: { es: 'Ven a vernos', en: 'Come and see us' },
@@ -219,11 +220,11 @@ export const contenidos = {
   espacio: {
     nota: { es: 'pasa y quédate', en: 'come in and stay' },
     titulo: { es: 'El espacio', en: 'The space' },
-    fotoBarraAlt: { es: 'La barra de InmoCafé', en: 'The InmoCafé counter' },
+    fotoBarraAlt: { es: 'Un café con leche sobre la barra de InmoCafé', en: 'A white coffee on the InmoCafé counter' },
     cafeTitulo: { es: 'El café', en: 'The café' },
     cafeTexto: null as Contenido,
     mesasTitulo: { es: 'Las mesas', en: 'The tables' },
-    fotoMesaAlt: { es: 'Mesas de InmoCafé', en: 'Tables at InmoCafé' },
+    fotoMesaAlt: { es: 'Mesa con un portátil y sillas de bambú en InmoCafé', en: 'Table with a laptop and bamboo chairs at InmoCafé' },
     wifi: { es: 'Sí', en: 'Yes' },
     enchufes: { es: 'Sí, en la pared', en: 'Yes, along the wall' },
     mesas: null as Contenido,

@@ -27,9 +27,6 @@ export default async function Tablon({ params }: PageProps<'/[lang]/tablon'>) {
       <p className={ui.texto} style={{ marginTop: 28 }}>
         {contenidos.inicio.tablonVacio[idioma]}
       </p>
-      <p className={ui.aviso} style={{ marginTop: 8 }}>
-        {d.tablon.proximamente}
-      </p>
     </div>
   );
 }

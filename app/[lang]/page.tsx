@@ -156,7 +156,7 @@ export default async function Inicio({ params }: PageProps<'/[lang]'>) {
             <Link href={ruta('/tablon', idioma)} className={ui.boton}>
               {d.botones.verTablon}
             </Link>
-            <span className={ui.botonSec} aria-disabled="true" title={d.tablon.proximamente}>
+            <span className={ui.botonSec} aria-disabled="true">
               {d.botones.publicarAnuncio}
             </span>
           </div>

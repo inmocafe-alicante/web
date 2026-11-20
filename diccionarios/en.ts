@@ -40,6 +40,7 @@ export const en: Diccionario = {
   },
   eventos: {
     fechaPorAnunciar: 'Date to be announced',
+    diaHoraPorAnunciar: 'Day and time to be announced',
     pestanas: 'Events',
     cuando: 'When',
     duracion: 'Duration',
@@ -69,9 +70,6 @@ export const en: Diccionario = {
     aceptoPrivacidad: 'I accept the privacy policy',
     enviar: 'Let me know',
     proximamente: 'Very soon you will be able to sign up here.',
-  },
-  tablon: {
-    proximamente: 'Very soon you will be able to post your ad here.',
   },
   espacio: {
     wifi: 'Wifi',

@@ -24,7 +24,8 @@ export interface Evento {
   nota: Texto;
   entradilla: Texto;
   pasos: Texto[];
-  diaSemana: DiaSemana;
+  /** Día habitual. `null` = sin confirmar → «Día y hora por anunciar». */
+  diaSemana: DiaSemana | null;
   /** Hora habitual, «19:00». `null` = sin decidir (D5). */
   hora: string | null;
   duracionMinutos: number;
