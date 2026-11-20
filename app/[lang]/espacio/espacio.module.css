@@ -60,4 +60,16 @@
   .mesasDatos {
     align-self: start;
   }
+
+  /* Sin foto, una sola columna. */
+  .cafe.sinFoto {
+    grid-template-columns: 1fr;
+  }
+
+  .mesas.sinFoto {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'titulo'
+      'datos';
+  }
 }

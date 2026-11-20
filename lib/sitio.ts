@@ -9,6 +9,16 @@ import { idiomas, ruta } from '@/lib/i18n';
  */
 export const INDEXAR = false;
 
+/**
+ * Funciones que aún no funcionan no se muestran (§0 regla 4).
+ * - avisame: lista de interesados (fase 2).
+ * - publicarAnuncio: publicar en el tablón (fase 4).
+ */
+export const FUNCIONES = {
+  avisame: false,
+  publicarAnuncio: false,
+};
+
 function urlBase(): URL {
   const host = process.env.VERCEL_PROJECT_PRODUCTION_URL ?? process.env.VERCEL_URL;
   return new URL(host ? `https://${host}` : 'http://localhost:3000');

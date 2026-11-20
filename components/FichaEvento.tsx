@@ -2,25 +2,21 @@ import Link from 'next/link';
 import type { Evento, Idioma } from '@/content/tipos';
 import { diccionario, ruta } from '@/lib/i18n';
 import { duracion, fechaLarga, plazasLibres, proximasSesiones } from '@/lib/formato';
+import { FUNCIONES } from '@/lib/sitio';
 import { Avisame } from './Avisame';
 import { Foto } from './Foto';
-import { Hueco } from './Hueco';
 import ui from './ui.module.css';
 import estilos from './Eventos.module.css';
 
 export function Cuando({ evento, idioma }: { evento: Evento; idioma: Idioma }) {
   const d = diccionario(idioma);
-  if (evento.diaSemana === null) return <>{d.eventos.diaHoraPorAnunciar}</>;
+  // Sin día o sin hora confirmados: «Día y hora por anunciar».
+  if (evento.diaSemana === null || evento.hora === null) return <>{d.eventos.diaHoraPorAnunciar}</>;
   return (
     <>
-      {d.eventos.dias[evento.diaSemana]} · {evento.hora ?? <Hueco etiqueta={d.huecos.hora} />}
+      {d.eventos.dias[evento.diaSemana]} · {evento.hora}
     </>
   );
-}
-
-export function Precio({ euros, idioma }: { euros: number | null; idioma: Idioma }) {
-  const d = diccionario(idioma);
-  return euros === null ? <Hueco etiqueta={d.huecos.precio} /> : <>{d.eventos.precio(euros)}</>;
 }
 
 export function FichaEvento({ evento, idioma }: { evento: Evento; idioma: Idioma }) {
@@ -37,7 +33,6 @@ export function FichaEvento({ evento, idioma }: { evento: Evento; idioma: Idioma
       <Foto
         foto={evento.foto}
         alt={evento.fotoAlt[idioma]}
-        pendiente={d.huecos.foto}
         sizes="(min-width: 700px) 640px, calc(100vw - 40px)"
       />
 
@@ -52,13 +47,15 @@ export function FichaEvento({ evento, idioma }: { evento: Evento; idioma: Idioma
           <dt>{d.eventos.duracion}</dt>
           <dd>{duracion(evento.duracionMinutos, idioma)}</dd>
         </div>
-        <div className={ui.dato}>
-          <dt>{d.eventos.entrada}</dt>
-          <dd>
-            <Precio euros={evento.precioEuros} idioma={idioma} /> {d.eventos.porPersona}
-            <span className={estilos.incluye}>{evento.incluye[idioma]}</span>
-          </dd>
-        </div>
+        {evento.precioEuros !== null && (
+          <div className={ui.dato}>
+            <dt>{d.eventos.entrada}</dt>
+            <dd>
+              {d.eventos.precio(evento.precioEuros)} {d.eventos.porPersona}
+              <span className={estilos.incluye}>{evento.incluye[idioma]}</span>
+            </dd>
+          </div>
+        )}
       </dl>
 
       <section aria-labelledby={`como-${evento.slug}`}>
@@ -82,14 +79,10 @@ export function FichaEvento({ evento, idioma }: { evento: Evento; idioma: Idioma
                     {fechaLarga(s.fecha, idioma)} · {s.horaInicio}
                   </p>
                   <p className={estilos.plazas}>{libres > 0 ? d.eventos.quedanPlazas(libres) : d.eventos.completo}</p>
-                  {libres > 0 ? (
+                  {libres > 0 && (
                     <Link className={ui.boton} href={ruta(`/eventos/${evento.slug}/${s.fecha}`, idioma)}>
                       {d.botones.apuntate}
                     </Link>
-                  ) : (
-                    <span className={ui.boton} aria-disabled="true">
-                      {d.eventos.completo}
-                    </span>
                   )}
                 </li>
               );
@@ -100,7 +93,7 @@ export function FichaEvento({ evento, idioma }: { evento: Evento; idioma: Idioma
         <p className={estilos.porAnunciar}>{d.eventos.fechaPorAnunciar}</p>
       )}
 
-      <Avisame evento={evento} idioma={idioma} />
+      {FUNCIONES.avisame && <Avisame evento={evento} idioma={idioma} />}
     </article>
   );
 }

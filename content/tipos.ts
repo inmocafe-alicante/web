@@ -81,11 +81,11 @@ export interface Ajustes {
   horario: Record<DiaSemana, Tramo[]>;
   cierresEspeciales: { fecha: string; motivo: Texto }[];
   contacto: {
-    telefono: string;
+    telefono: string | null;
     whatsapp: string | null;
     correo: string | null;
-    instagram: string;
-    tiktok: string;
+    instagram: string | null;
+    tiktok: string | null;
   };
   /** Carta (PDF o imagen) en /public. */
   carta: string | null;

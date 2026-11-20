@@ -2,8 +2,6 @@ import Link from 'next/link';
 import type { Idioma } from '@/content/tipos';
 import { ajustes, contenidos } from '@/content/contenido';
 import { Foto } from '@/components/Foto';
-import { Hueco } from '@/components/Hueco';
-import { TextoOHueco } from '@/components/Textos';
 import { diccionario, ruta } from '@/lib/i18n';
 import { metadatos } from '@/lib/sitio';
 import ui from '@/components/ui.module.css';
@@ -23,7 +21,7 @@ export default async function Espacio({ params }: PageProps<'/[lang]/espacio'>) 
     { dt: d.espacio.enchufes, dd: c.enchufes },
     { dt: d.espacio.mesas, dd: c.mesas },
     { dt: d.espacio.mejorMomento, dd: c.mejorMomento },
-  ];
+  ].filter((x) => x.dd !== null); // lo que falta no se muestra
 
   return (
     <div className={ui.contenedor}>
@@ -33,41 +31,30 @@ export default async function Espacio({ params }: PageProps<'/[lang]/espacio'>) 
       </header>
 
       <div className={estilos.filas}>
-        <section className={estilos.cafe} aria-labelledby="el-cafe">
+        <section className={`${estilos.cafe} ${c.fotoBarra ? '' : estilos.sinFoto}`} aria-labelledby="el-cafe">
           <Foto
             foto={c.fotoBarra}
             alt={c.fotoBarraAlt[idioma]}
-            pendiente={d.huecos.foto}
             sizes="(min-width: 1100px) 494px, (min-width: 900px) 46vw, calc(100vw - 40px)"
           />
           <div className={ui.pila}>
             <h2 id="el-cafe">{c.cafeTitulo[idioma]}</h2>
-            <p className={ui.texto}>
-              <TextoOHueco texto={c.cafeTexto} idioma={idioma} />
-            </p>
-            {ajustes.carta ? (
+            {c.cafeTexto && <p className={ui.texto}>{c.cafeTexto[idioma]}</p>}
+            {ajustes.carta && (
               <a href={ajustes.carta} className={ui.boton}>
                 {d.botones.verCarta}
               </a>
-            ) : (
-              <p>
-                <span className={ui.boton} aria-disabled="true">
-                  {d.botones.verCarta}
-                </span>{' '}
-                <Hueco etiqueta={d.huecos.pendiente} />
-              </p>
             )}
           </div>
         </section>
 
-        <section className={`${ui.tarjeta} ${estilos.mesas}`} aria-labelledby="las-mesas">
+        <section className={`${ui.tarjeta} ${estilos.mesas} ${c.fotoMesa ? '' : estilos.sinFoto}`} aria-labelledby="las-mesas">
           <h2 id="las-mesas" className={estilos.mesasTitulo}>
             {c.mesasTitulo[idioma]}
           </h2>
           <Foto
             foto={c.fotoMesa}
             alt={c.fotoMesaAlt[idioma]}
-            pendiente={d.huecos.foto}
             sizes="(min-width: 1100px) 466px, (min-width: 900px) 42vw, calc(100vw - 88px)"
             className={estilos.mesasFoto}
           />
@@ -75,9 +62,7 @@ export default async function Espacio({ params }: PageProps<'/[lang]/espacio'>) 
             {datos.map((x) => (
               <div key={x.dt} className={ui.dato}>
                 <dt>{x.dt}</dt>
-                <dd>
-                  <TextoOHueco texto={x.dd} idioma={idioma} />
-                </dd>
+                <dd>{x.dd?.[idioma]}</dd>
               </div>
             ))}
           </dl>

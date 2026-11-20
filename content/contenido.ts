@@ -6,7 +6,8 @@
  * `ajustes`, `contenidos`). En la fase 2 estos datos pasan a la base de datos
  * y se editan desde el panel; las páginas no cambian.
  *
- * - `null` = dato que falta → hueco visible en Preview y bloqueo en producción.
+ * - `null` = dato que falta → el elemento no se muestra en la web (§0 regla 4).
+ *   `npm run huecos` lista lo que falta; solo los textos legales bloquean producción.
  * - Fotos: `{ src, foco }` (ruta dentro de /public y punto de interés como
  *   `object-position`), o `null` si aún no está subida. Se muestran en 4:3.
  * - `*palabra*` = palabra destacada en Terracota (titular de la portada, «+»).
@@ -134,9 +135,9 @@ export const ajustes: Ajustes = {
   },
   cierresEspeciales: [],
   contacto: {
-    telefono: '600 65 18 00',
-    whatsapp: null,
-    correo: null,
+    telefono: '633 92 50 95',
+    whatsapp: '633 92 50 95',
+    correo: 'info@inmocafealicante.com',
     instagram: 'inmo.cafealicante',
     tiktok: 'inmocafealicante',
   },
@@ -198,8 +199,8 @@ export const contenidos = {
     tablonEtiqueta: { es: 'Tablón de compraventa', en: 'Buy & sell noticeboard' },
     tablonTitulo: { es: 'Lo último del tablón', en: 'Latest on the noticeboard' },
     tablonVacio: {
-      es: 'Todavía no hay anuncios. Muy pronto podrás publicar el tuyo desde aquí.',
-      en: 'There are no ads yet. Very soon you will be able to post yours here.',
+      es: 'Todavía no hay anuncios.',
+      en: 'There are no ads yet.',
     },
 
     visitaTitulo: { es: 'Ven a vernos', en: 'Come and see us' },

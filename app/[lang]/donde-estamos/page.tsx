@@ -1,10 +1,10 @@
+import { Fragment } from 'react';
 import type { Idioma } from '@/content/tipos';
 import { ajustes, contenidos } from '@/content/contenido';
 import { Foto } from '@/components/Foto';
-import { Hueco } from '@/components/Hueco';
 import { MapaDiferido } from '@/components/MapaDiferido';
 import { diccionario } from '@/lib/i18n';
-import { diasSemana, tramos } from '@/lib/formato';
+import { diasSemana, enlacesContacto, tramos } from '@/lib/formato';
 import { metadatos } from '@/lib/sitio';
 import ui from '@/components/ui.module.css';
 import estilos from './donde.module.css';
@@ -17,8 +17,16 @@ export async function generateMetadata({ params }: PageProps<'/[lang]/donde-esta
 export default async function DondeEstamos({ params }: PageProps<'/[lang]/donde-estamos'>) {
   const idioma = (await params).lang as Idioma;
   const d = diccionario(idioma);
-  const { direccion, contacto } = ajustes;
-  const telefono = contacto.telefono.replace(/\s/g, '');
+  const { direccion } = ajustes;
+  const e = enlacesContacto();
+  // Solo los datos de contacto que existen.
+  const filas = [
+    { dt: d.donde.telefono, enlace: e.telefono, externo: false },
+    { dt: d.donde.whatsapp, enlace: e.whatsapp, externo: true },
+    { dt: d.donde.correo, enlace: e.correo, externo: false },
+    { dt: d.donde.instagram, enlace: e.instagram, externo: true },
+    { dt: d.donde.tiktok, enlace: e.tiktok, externo: true },
+  ].flatMap((f) => (f.enlace ? [{ ...f, enlace: f.enlace }] : []));
 
   return (
     <div className={ui.contenedor}>
@@ -37,7 +45,6 @@ export default async function DondeEstamos({ params }: PageProps<'/[lang]/donde-
           <Foto
             foto={contenidos.dondeEstamos.fotoFachada}
             alt={contenidos.dondeEstamos.fotoFachadaAlt[idioma]}
-            pendiente={d.huecos.foto}
             sizes="(min-width: 1100px) 518px, (min-width: 900px) 47vw, calc(100vw - 40px)"
           />
         </div>
@@ -82,30 +89,16 @@ export default async function DondeEstamos({ params }: PageProps<'/[lang]/donde-
               {d.donde.contacto}
             </h2>
             <dl className={estilos.contacto}>
-              <dt>{d.donde.telefono}</dt>
-              <dd>
-                <a href={`tel:+34${telefono}`}>{contacto.telefono}</a>
-              </dd>
-              <dt>{d.donde.whatsapp}</dt>
-              <dd>
-                {contacto.whatsapp ? (
-                  <a href={`https://wa.me/34${contacto.whatsapp.replace(/\s/g, '')}`}>{contacto.whatsapp}</a>
-                ) : (
-                  <Hueco etiqueta={d.huecos.pendiente} />
-                )}
-              </dd>
-              <dt>{d.donde.instagram}</dt>
-              <dd>
-                <a href={`https://www.instagram.com/${contacto.instagram}/`} rel="noopener noreferrer">
-                  @{contacto.instagram}
-                </a>
-              </dd>
-              <dt>{d.donde.tiktok}</dt>
-              <dd>
-                <a href={`https://www.tiktok.com/@${contacto.tiktok}`} rel="noopener noreferrer">
-                  @{contacto.tiktok}
-                </a>
-              </dd>
+              {filas.map((f) => (
+                <Fragment key={f.dt}>
+                  <dt>{f.dt}</dt>
+                  <dd>
+                    <a href={f.enlace.href} {...(f.externo ? { rel: 'noopener noreferrer' } : {})}>
+                      {f.enlace.texto}
+                    </a>
+                  </dd>
+                </Fragment>
+              ))}
             </dl>
           </section>
         </div>

@@ -7,7 +7,7 @@ import { ConAcento } from '@/components/Textos';
 import { Cuando } from '@/components/FichaEvento';
 import { diccionario, ruta } from '@/lib/i18n';
 import { fechaLarga, plazasLibres, proximasSesiones, resumenHorario } from '@/lib/formato';
-import { metadatos } from '@/lib/sitio';
+import { FUNCIONES, metadatos } from '@/lib/sitio';
 import ui from '@/components/ui.module.css';
 import ev from '@/components/Eventos.module.css';
 import estilos from './inicio.module.css';
@@ -46,7 +46,6 @@ export default async function Inicio({ params }: PageProps<'/[lang]'>) {
           <Foto
             foto={c.foto}
             alt={c.fotoAlt[idioma]}
-            pendiente={d.huecos.foto}
             sizes="(min-width: 1100px) 520px, (min-width: 900px) 47vw, calc(100vw - 40px)"
             prioridad
           >
@@ -120,7 +119,11 @@ export default async function Inicio({ params }: PageProps<'/[lang]'>) {
                   <p className={ev.fecha}>
                     {sesion ? `${fechaLarga(sesion.fecha, idioma)} · ${sesion.horaInicio}` : d.eventos.fechaPorAnunciar}
                   </p>
-                  <h3>{e.nombre[idioma]}</h3>
+                  <h3>
+                    <Link href={ruta(`/eventos/${e.slug}`, idioma)} className={ev.enlaceTitulo}>
+                      {e.nombre[idioma]}
+                    </Link>
+                  </h3>
                   {sesion ? (
                     <>
                       <p className={ev.plazas}>{d.eventos.quedanPlazas(plazasLibres(sesion))}</p>
@@ -133,9 +136,11 @@ export default async function Inicio({ params }: PageProps<'/[lang]'>) {
                       <p className={ev.plazas}>
                         <Cuando evento={e} idioma={idioma} />
                       </p>
-                      <Link className={`${ui.boton} ${ev.accion}`} href={`${ruta(`/eventos/${e.slug}`, idioma)}#avisame`}>
-                        {d.botones.avisame}
-                      </Link>
+                      {FUNCIONES.avisame && (
+                        <Link className={`${ui.boton} ${ev.accion}`} href={`${ruta(`/eventos/${e.slug}`, idioma)}#avisame`}>
+                          {d.botones.avisame}
+                        </Link>
+                      )}
                     </>
                   )}
                 </li>
@@ -162,9 +167,11 @@ export default async function Inicio({ params }: PageProps<'/[lang]'>) {
             <Link href={ruta('/tablon', idioma)} className={ui.boton}>
               {d.botones.verTablon}
             </Link>
-            <span className={ui.botonSec} aria-disabled="true">
-              {d.botones.publicarAnuncio}
-            </span>
+            {FUNCIONES.publicarAnuncio && (
+              <Link href={ruta('/tablon/publicar', idioma)} className={ui.botonSec}>
+                {d.botones.publicarAnuncio}
+              </Link>
+            )}
           </div>
         </div>
       </section>

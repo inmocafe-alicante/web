@@ -83,6 +83,7 @@ export const en: Diccionario = {
     contacto: 'Contact',
     telefono: 'Phone',
     whatsapp: 'WhatsApp',
+    correo: 'Email',
     instagram: 'Instagram',
     tiktok: 'TikTok',
     dia: 'Day',
@@ -97,16 +98,6 @@ export const en: Diccionario = {
     y: 'and',
     a: 'to',
     cerrado: 'closed',
-  },
-  huecos: {
-    pendiente: 'PENDIENTE DE ARIADNA',
-    hora: '[HORA]',
-    foto: 'FOTO PENDIENTE',
-    dato: '[DATO]',
-    precio: '[PRECIO]',
-  },
-  legal: {
-    borradorAviso: 'Pending page: the text will be decided by InmoCafé and its adviser.',
   },
   noEncontrada: {
     titulo: 'We can’t find this page',

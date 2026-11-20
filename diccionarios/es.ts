@@ -81,6 +81,7 @@ export const es = {
     contacto: 'Contacto',
     telefono: 'Teléfono',
     whatsapp: 'WhatsApp',
+    correo: 'Correo',
     instagram: 'Instagram',
     tiktok: 'TikTok',
     dia: 'Día',
@@ -95,16 +96,6 @@ export const es = {
     y: 'y',
     a: 'a',
     cerrado: 'cerrado',
-  },
-  huecos: {
-    pendiente: 'PENDIENTE DE ARIADNA',
-    hora: '[HORA]',
-    foto: 'FOTO PENDIENTE',
-    dato: '[DATO]',
-    precio: '[PRECIO]',
-  },
-  legal: {
-    borradorAviso: 'Página pendiente: el texto lo decide InmoCafé con su asesor.',
   },
   noEncontrada: {
     titulo: 'No encontramos esta página',

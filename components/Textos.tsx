@@ -1,6 +1,3 @@
-import type { Contenido, Idioma } from '@/content/tipos';
-import { diccionario } from '@/lib/i18n';
-import { Hueco } from './Hueco';
 import ui from './ui.module.css';
 
 /** Pinta en Terracota lo que va entre asteriscos: «Una cafetería dentro de una *inmobiliaria*». */
@@ -19,9 +16,4 @@ export function ConAcento({ texto }: { texto: string }) {
       )}
     </>
   );
-}
-
-/** Texto del contenido, o hueco «PENDIENTE DE ARIADNA» si falta. */
-export function TextoOHueco({ texto, idioma }: { texto: Contenido; idioma: Idioma }) {
-  return texto ? <>{texto[idioma]}</> : <Hueco etiqueta={diccionario(idioma).huecos.pendiente} />;
 }

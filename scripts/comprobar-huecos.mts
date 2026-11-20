@@ -1,17 +1,16 @@
 /**
  * Comprobación de huecos (§0 regla 4 y §8).
  *
- * Busca datos que faltan en el contenido y en los diccionarios:
+ * En la web, lo que falta no se ve: se oculta el elemento entero. Esta
+ * comprobación lista todo lo que falta (`npm run huecos`):
  *   - cualquier valor `null` en content/contenido.ts;
  *   - textos con `[ALGO]` o «PENDIENTE».
- *   - fotos pendientes (`null`), que también salen como `null`.
  *
- * Además, si una foto declarada en el contenido no está en /public, la
- * compilación falla siempre (también en Preview): es un error, no un hueco.
- *
- * En Preview y en local solo informa. En la compilación de PRODUCCIÓN de Vercel
- * (VERCEL_ENV=production) o con `--estricto`, falla si encuentra alguno:
- * así no se puede publicar la web con huecos.
+ * Bloqueos:
+ *   - En la compilación de PRODUCCIÓN de Vercel (VERCEL_ENV=production) o con
+ *     `--estricto`, falla SOLO si faltan textos legales. El resto no bloquea.
+ *   - Siempre (también en Preview) falla si una foto declarada en el contenido
+ *     no está en /public: es un error, no un hueco.
  */
 import fs from 'node:fs';
 import * as contenido from '../content/contenido.ts';
@@ -39,9 +38,8 @@ recorrer(contenido.sesiones, 'sesiones');
 recorrer(contenido.ajustes, 'ajustes');
 recorrer(contenido.contenidos, 'contenidos');
 recorrer(contenido.legales, 'legales');
-// `huecos` son las etiquetas que pintan los propios huecos.
-recorrer(es, 'diccionario.es', ['diccionario.es.huecos']);
-recorrer(en, 'diccionario.en', ['diccionario.en.huecos']);
+recorrer(es, 'diccionario.es');
+recorrer(en, 'diccionario.en');
 
 const { inicio, espacio, dondeEstamos } = contenido.contenidos;
 const fotos = [inicio.foto, espacio.fotoBarra, espacio.fotoMesa, dondeEstamos.fotoFachada, ...contenido.eventos.map((e) => e.foto)];
@@ -53,15 +51,19 @@ if (perdidas.length) {
 }
 
 const estricto = process.env.VERCEL_ENV === 'production' || process.argv.includes('--estricto');
+const bloquean = huecos.filter((h) => h.startsWith('legales.'));
 
 if (huecos.length === 0) {
   console.log('✓ Sin huecos: no falta ningún dato.');
 } else {
-  console.log(`Huecos pendientes (${huecos.length}):`);
+  console.log(`Datos que faltan (${huecos.length}); en la web no se muestran:`);
   for (const h of huecos) console.log(`  · ${h}`);
+}
+
+if (bloquean.length > 0) {
   if (estricto) {
-    console.error('\n✗ Compilación de producción detenida: hay datos que faltan (ver §8 de las instrucciones).');
+    console.error(`\n✗ Compilación de producción detenida: faltan ${bloquean.length} textos legales (§8).`);
     process.exit(1);
   }
-  console.log('\n(Preview/local: se muestran como huecos visibles. En producción esta comprobación detiene la publicación.)');
+  console.log(`\n(Faltan ${bloquean.length} textos legales: en producción detienen la compilación. En Preview, no.)`);
 }

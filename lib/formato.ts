@@ -1,5 +1,6 @@
 import type { DiaSemana, Evento, Idioma, Sesion, Tramo } from '@/content/tipos';
-import { ajustes, sesiones } from '@/content/contenido';
+import { ajustes, legales, sesiones } from '@/content/contenido';
+import type { PaginaLegal } from '@/content/tipos';
 import { diccionario } from '@/lib/i18n';
 
 export const diasSemana: DiaSemana[] = ['lunes', 'martes', 'miercoles', 'jueves', 'viernes', 'sabado', 'domingo'];
@@ -56,4 +57,25 @@ export function fechaLarga(iso: string, idioma: Idioma): string {
     day: 'numeric',
     month: 'long',
   }).format(fecha);
+}
+
+/** Una página legal se publica (y se enlaza en el pie) solo con todo su texto. */
+export function legalCompleta(pagina: PaginaLegal): boolean {
+  return pagina.secciones.every((s) => s.texto !== null);
+}
+
+export const paginasLegales = (Object.keys(legales) as (keyof typeof legales)[]).filter((k) => legalCompleta(legales[k]));
+
+const soloDigitos = (n: string) => n.replace(/\D/g, '');
+
+/** Enlaces de contacto que existen; los que faltan no salen. */
+export function enlacesContacto() {
+  const c = ajustes.contacto;
+  return {
+    telefono: c.telefono ? { texto: c.telefono, href: `tel:+34${soloDigitos(c.telefono)}` } : null,
+    whatsapp: c.whatsapp ? { texto: c.whatsapp, href: `https://wa.me/34${soloDigitos(c.whatsapp)}` } : null,
+    correo: c.correo ? { texto: c.correo, href: `mailto:${c.correo}` } : null,
+    instagram: c.instagram ? { texto: `@${c.instagram}`, href: `https://www.instagram.com/${c.instagram}/` } : null,
+    tiktok: c.tiktok ? { texto: `@${c.tiktok}`, href: `https://www.tiktok.com/@${c.tiktok}` } : null,
+  };
 }

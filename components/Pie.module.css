@@ -23,7 +23,13 @@
 .enlaces a {
   display: inline-flex;
   align-items: center;
+  gap: 6px;
   min-height: 44px;
   color: var(--texto-2);
   text-underline-offset: 4px;
+}
+
+.etiqueta {
+  color: var(--cafe);
+  font-weight: 600;
 }

@@ -1,7 +1,8 @@
 import type { Idioma } from '@/content/tipos';
 import { contenidos } from '@/content/contenido';
-import { diccionario } from '@/lib/i18n';
-import { metadatos } from '@/lib/sitio';
+import Link from 'next/link';
+import { diccionario, ruta } from '@/lib/i18n';
+import { FUNCIONES, metadatos } from '@/lib/sitio';
 import ui from '@/components/ui.module.css';
 
 export async function generateMetadata({ params }: PageProps<'/[lang]/tablon'>) {
@@ -20,9 +21,11 @@ export default async function Tablon({ params }: PageProps<'/[lang]/tablon'>) {
         <p className={ui.nota}>{c.nota[idioma]}</p>
         <h1>{c.titulo[idioma]}</h1>
         <p className={ui.texto}>{c.texto[idioma]}</p>
-        <span className={ui.boton} aria-disabled="true">
-          {d.botones.publicarAnuncio}
-        </span>
+        {FUNCIONES.publicarAnuncio && (
+          <Link href={ruta('/tablon/publicar', idioma)} className={ui.boton}>
+            {d.botones.publicarAnuncio}
+          </Link>
+        )}
       </header>
       <p className={ui.texto} style={{ marginTop: 28 }}>
         {contenidos.inicio.tablonVacio[idioma]}

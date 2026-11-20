@@ -30,7 +30,7 @@ export function MapaDiferido({ src, titulo, boton, aviso }: Props) {
     );
   }
   return (
-    <div className={`${ui.mapa} ${ui.fotoHueco}`} style={{ flexDirection: 'column', gap: 12 }}>
+    <div className={`${ui.mapa} ${ui.mapaReposo}`} style={{ flexDirection: 'column', gap: 12 }}>
       <Icono nombre="ubicacion" tamano={36} />
       <button type="button" className={ui.botonSec} onClick={() => setCargado(true)}>
         {boton}
