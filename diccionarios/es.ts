@@ -35,6 +35,7 @@ export const es = {
     publicarAnuncio: 'Publicar un anuncio',
     verCarta: 'Ver la carta',
     volverEventos: 'Volver a eventos',
+    verComoFunciona: 'Ver cómo funciona',
   },
   eventos: {
     fechaPorAnunciar: 'Fecha por anunciar',

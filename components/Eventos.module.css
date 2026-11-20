@@ -123,13 +123,53 @@
   font-size: 24px;
 }
 
-.enlaceTitulo {
+.tarjeta {
+  position: relative;
+}
+
+/* El enlace del título cubre toda la tarjeta. */
+.enlaceTarjeta {
   text-decoration: none;
 }
 
-.enlaceTitulo:hover {
+.enlaceTarjeta::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radio);
+}
+
+.enlaceTarjeta:focus-visible {
+  outline: none;
+}
+
+.enlaceTarjeta:focus-visible::after {
+  outline: 2px solid var(--cafe);
+  outline-offset: 3px;
+}
+
+.tarjeta:hover {
+  background: #45342a;
+}
+
+.tarjeta:hover .verMas {
   text-decoration: underline;
   text-underline-offset: 4px;
+}
+
+/* Los botones de dentro (Apúntate) quedan por encima del enlace de la tarjeta. */
+.tarjeta .accion {
+  position: relative;
+  z-index: 1;
+}
+
+.verMas {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  padding-top: 8px;
 }
 
 .accion {

@@ -120,7 +120,7 @@ export default async function Inicio({ params }: PageProps<'/[lang]'>) {
                     {sesion ? `${fechaLarga(sesion.fecha, idioma)} · ${sesion.horaInicio}` : d.eventos.fechaPorAnunciar}
                   </p>
                   <h3>
-                    <Link href={ruta(`/eventos/${e.slug}`, idioma)} className={ev.enlaceTitulo}>
+                    <Link href={ruta(`/eventos/${e.slug}`, idioma)} className={ev.enlaceTarjeta}>
                       {e.nombre[idioma]}
                     </Link>
                   </h3>
@@ -143,6 +143,10 @@ export default async function Inicio({ params }: PageProps<'/[lang]'>) {
                       )}
                     </>
                   )}
+                  {/* Toda la tarjeta es enlace a la ficha (el del título se extiende a la tarjeta). */}
+                  <span className={ev.verMas} aria-hidden="true">
+                    {d.botones.verComoFunciona} <Icono nombre="flecha" tamano={18} />
+                  </span>
                 </li>
               );
             })}

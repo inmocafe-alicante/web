@@ -37,6 +37,7 @@ export const en: Diccionario = {
     publicarAnuncio: 'Post an ad',
     verCarta: 'See the menu',
     volverEventos: 'Back to events',
+    verComoFunciona: 'See how it works',
   },
   eventos: {
     fechaPorAnunciar: 'Date to be announced',
