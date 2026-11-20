@@ -1,0 +1,75 @@
+/* El espacio: en móvil, una columna; en ordenador, filas de dos columnas. */
+.filas {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-bottom: 64px;
+}
+
+.cafe {
+  display: grid;
+  gap: 20px;
+}
+
+.mesas {
+  display: grid;
+  gap: 20px;
+  grid-template-areas:
+    'titulo'
+    'foto'
+    'datos';
+}
+
+.mesasTitulo {
+  grid-area: titulo;
+}
+
+.mesasFoto {
+  grid-area: foto;
+}
+
+.mesasDatos {
+  grid-area: datos;
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (min-width: 900px) {
+  .filas {
+    gap: 40px;
+  }
+
+  /* El café: foto a la izquierda, texto a la derecha. */
+  .cafe {
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  /* Las mesas: datos a la izquierda, foto a la derecha. */
+  .mesas {
+    padding: 32px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      'titulo foto'
+      'datos foto';
+    column-gap: 40px;
+    row-gap: 20px;
+  }
+
+  .mesasDatos {
+    align-self: start;
+  }
+
+  /* Sin foto, una sola columna. */
+  .cafe.sinFoto {
+    grid-template-columns: 1fr;
+  }
+
+  .mesas.sinFoto {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'titulo'
+      'datos';
+  }
+}

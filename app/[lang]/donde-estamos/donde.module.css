@@ -1,0 +1,73 @@
+.rejilla {
+  display: grid;
+  gap: 24px;
+  padding-bottom: 64px;
+}
+
+.direccion {
+  font-family: var(--fuente-titulo), Georgia, serif;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.h2 {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabla th,
+.tabla td {
+  text-align: left;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--linea);
+  vertical-align: top;
+}
+
+.tabla th {
+  font-weight: 600;
+  padding-right: 16px;
+}
+
+.tabla td {
+  color: var(--texto-2);
+}
+
+.contacto {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 20px;
+  margin: 0;
+}
+
+.contacto dt {
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.contacto dd {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--texto-2);
+}
+
+.contacto a {
+  color: var(--texto);
+  text-underline-offset: 4px;
+}
+
+@media (min-width: 900px) {
+  .rejilla {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
