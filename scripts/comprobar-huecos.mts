@@ -45,7 +45,8 @@ recorrer(en, 'diccionario.en', ['diccionario.en.huecos']);
 
 const { inicio, espacio, dondeEstamos } = contenido.contenidos;
 const fotos = [inicio.foto, espacio.fotoBarra, espacio.fotoMesa, dondeEstamos.fotoFachada, ...contenido.eventos.map((e) => e.foto)];
-const perdidas = [...new Set(fotos)].filter((f): f is string => f !== null && !fs.existsSync(`public${f}`));
+const rutas = fotos.flatMap((f) => (f ? [f.src] : []));
+const perdidas = [...new Set(rutas)].filter((f) => !fs.existsSync(`public${f}`));
 if (perdidas.length) {
   for (const f of perdidas) console.error(`✗ La foto public${f} está en el contenido pero no en el repositorio.`);
   process.exit(1);

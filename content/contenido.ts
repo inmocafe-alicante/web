@@ -7,12 +7,13 @@
  * y se editan desde el panel; las páginas no cambian.
  *
  * - `null` = dato que falta → hueco visible en Preview y bloqueo en producción.
- * - Fotos: ruta dentro de /public, o `null` si aún no está subida.
+ * - Fotos: `{ src, foco }` (ruta dentro de /public y punto de interés como
+ *   `object-position`), o `null` si aún no está subida. Se muestran en 4:3.
  * - `*palabra*` = palabra destacada en Terracota (titular de la portada, «+»).
  * - Los textos en inglés son un BORRADOR traducido desde el español, pendiente
  *   de revisión por Ariadna (§8).
  */
-import type { Ajustes, Contenido, Evento, PaginaLegal, Sesion, Texto } from './tipos';
+import type { Ajustes, Contenido, Evento, FotoContenido, PaginaLegal, Sesion, Texto } from './tipos';
 
 // ─── eventos ──────────────────────────────────────────────────────────────
 // 🟡 Duraciones y pasos: modelos de evento B1, PROPUESTA sin aprobar.
@@ -160,7 +161,7 @@ export const contenidos = {
       en: 'Come in, order a coffee and stay as long as you like: for a drink, to work on your laptop or for one of our weekly events. Nobody will try to sell you anything.',
     },
     notaFoto: { es: 'tu espacio, tu café', en: 'tu espacio, tu café' },
-    foto: '/fotos/portada.jpg',
+    foto: { src: '/fotos/portada.jpg', foco: '50% 50%' } as FotoContenido,
     fotoAlt: {
       es: 'La sala de InmoCafé, con mesas, sillas de bambú y la barra al fondo',
       en: 'The InmoCafé room, with tables, bamboo chairs and the counter at the back',
@@ -222,12 +223,14 @@ export const contenidos = {
   espacio: {
     nota: { es: 'pasa y quédate', en: 'come in and stay' },
     titulo: { es: 'El espacio', en: 'The space' },
-    fotoBarra: '/fotos/espacio-barra.jpg',
+    // Foco en la taza.
+    fotoBarra: { src: '/fotos/espacio-barra.jpg', foco: '32% 38%' } as FotoContenido,
     fotoBarraAlt: { es: 'Un café con leche sobre la barra de InmoCafé', en: 'A white coffee on the InmoCafé counter' },
     cafeTitulo: { es: 'El café', en: 'The café' },
     cafeTexto: null as Contenido,
     mesasTitulo: { es: 'Las mesas', en: 'The tables' },
-    fotoMesa: '/fotos/espacio-mesa.jpg',
+    // Foco en la mesa con el portátil.
+    fotoMesa: { src: '/fotos/espacio-mesa.jpg', foco: '40% 30%' } as FotoContenido,
     fotoMesaAlt: { es: 'Mesa con un portátil y sillas de bambú en InmoCafé', en: 'Table with a laptop and bamboo chairs at InmoCafé' },
     wifi: { es: 'Sí', en: 'Yes' },
     enchufes: { es: 'Sí, en la pared', en: 'Yes, along the wall' },
@@ -238,7 +241,7 @@ export const contenidos = {
 
   dondeEstamos: {
     titulo: { es: 'Dónde estamos', en: 'Where to find us' },
-    fotoFachada: null as string | null,
+    fotoFachada: null as FotoContenido | null,
     fotoFachadaAlt: { es: 'Fachada de InmoCafé', en: 'InmoCafé from the street' },
   },
 

@@ -35,11 +35,10 @@ export default async function DondeEstamos({ params }: PageProps<'/[lang]/donde-
             aviso={d.donde.avisoMapa}
           />
           <Foto
-            src={contenidos.dondeEstamos.fotoFachada}
+            foto={contenidos.dondeEstamos.fotoFachada}
             alt={contenidos.dondeEstamos.fotoFachadaAlt[idioma]}
-            alto={220}
             pendiente={d.huecos.foto}
-            sizes="(min-width: 900px) 550px, 100vw"
+            sizes="(min-width: 1100px) 518px, (min-width: 900px) 47vw, calc(100vw - 40px)"
           />
         </div>
 

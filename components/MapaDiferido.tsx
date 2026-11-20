@@ -16,7 +16,7 @@ export function MapaDiferido({ src, titulo, boton, aviso }: Props) {
   const [cargado, setCargado] = useState(false);
   if (cargado) {
     return (
-      <div className={ui.foto} style={{ height: 300 }}>
+      <div className={ui.mapa}>
         <iframe
           src={src}
           title={titulo}
@@ -30,7 +30,7 @@ export function MapaDiferido({ src, titulo, boton, aviso }: Props) {
     );
   }
   return (
-    <div className={`${ui.foto} ${ui.fotoHueco}`} style={{ height: 300, flexDirection: 'column', gap: 12 }}>
+    <div className={`${ui.mapa} ${ui.fotoHueco}`} style={{ flexDirection: 'column', gap: 12 }}>
       <Icono nombre="ubicacion" tamano={36} />
       <button type="button" className={ui.botonSec} onClick={() => setCargado(true)}>
         {boton}

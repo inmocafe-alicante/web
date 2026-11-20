@@ -12,6 +12,18 @@ export type Idioma = 'es' | 'en';
 /** Texto en los dos idiomas. */
 export type Texto = { es: string; en: string };
 
+/**
+ * Foto del contenido. `foco` es el punto de interés (CSS `object-position`):
+ * qué parte de la foto se conserva si hay que recortarla. Se podrá cambiar
+ * desde el panel.
+ */
+export interface FotoContenido {
+  /** Ruta dentro de /public. */
+  src: string;
+  /** «50% 50%» = centro. */
+  foco: string;
+}
+
 export type DiaSemana = 'lunes' | 'martes' | 'miercoles' | 'jueves' | 'viernes' | 'sabado' | 'domingo';
 
 /** Tabla `eventos`. */
@@ -35,8 +47,8 @@ export interface Evento {
   aforoPorDefecto: number;
   /** Cupo de plazas que se ofrece en la web. `null` = sin decidir. */
   plazasWebPorDefecto: number | null;
-  /** Ruta dentro de /public. `null` = foto pendiente. */
-  foto: string | null;
+  /** `null` = foto pendiente. */
+  foto: FotoContenido | null;
   fotoAlt: Texto;
 }
 

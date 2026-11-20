@@ -34,7 +34,12 @@ export function FichaEvento({ evento, idioma }: { evento: Evento; idioma: Idioma
         <p className={ui.texto}>{evento.entradilla[idioma]}</p>
       </div>
 
-      <Foto src={evento.foto} alt={evento.fotoAlt[idioma]} alto={240} pendiente={d.huecos.foto} />
+      <Foto
+        foto={evento.foto}
+        alt={evento.fotoAlt[idioma]}
+        pendiente={d.huecos.foto}
+        sizes="(min-width: 700px) 640px, calc(100vw - 40px)"
+      />
 
       <dl className={ui.datos}>
         <div className={ui.dato}>
